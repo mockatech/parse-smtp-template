@@ -186,12 +186,13 @@ var SmtpMailAdapter = mailOptions => {
         }
 
         const user = data.user.attributes;
+        const lang = (user[_multiLangColumn] === undefined) ? mailOptions.defaultLang : user[_multiLangColumn]
         const link = data.link;
         const appName = data.appName;
         const defOptions = mailOptions.confirmOptions;
-        const options = (_multiLang && mailOptions.multiLangConfirm) ? mailOptions.multiLangConfirm[user[_multiLangColumn]].others || {} : mailOptions.confirmOptions.others || {};
+        const options = (_multiLang && mailOptions.multiLangConfirm) ? mailOptions.multiLangConfirm[lang].others || {} : mailOptions.confirmOptions.others || {};
         const langOptions = mailOptions.multiLangConfirm
-            ? mailOptions.multiLangConfirm[user[_multiLangColumn]] : {};
+            ? mailOptions.multiLangConfirm[lang] : {};
 
         let subject = (_multiLang && typeof langOptions !== 'undefined')
                         ? langOptions.subject
@@ -269,12 +270,13 @@ var SmtpMailAdapter = mailOptions => {
 }
         
         const user = data.user.attributes;
+        const lang = (user[_multiLangColumn] === undefined) ? mailOptions.defaultLang : user[_multiLangColumn]
         const link = data.link;
         const appName = data.appName;
         const defOptions = mailOptions.passwordOptions;
-        const options = (_multiLang && mailOptions.multiLangPass) ? mailOptions.multiLangPass[user[_multiLangColumn]].others || {} : mailOptions.passwordOptions.others || {};
+        const options = (_multiLang && mailOptions.multiLangPass) ? mailOptions.multiLangPass[lang].others || {} : mailOptions.passwordOptions.others || {};
         const langOptions = mailOptions.multiLangPass
-            ? mailOptions.multiLangPass[user[_multiLangColumn]] : {};
+            ? mailOptions.multiLangPass[lang] : {};
 
         let subject = (_multiLang && typeof langOptions !== 'undefined')
                         ? langOptions.subject
