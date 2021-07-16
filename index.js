@@ -187,7 +187,7 @@ var SmtpMailAdapter = mailOptions => {
 
         const user = data.user.attributes;
         const lang = (user[_multiLangColumn] === undefined) ? mailOptions.defaultLang : user[_multiLangColumn]
-        const link = data.link;
+        const link = `${data.link}&locale=${lang}`;
         const appName = data.appName;
         const defOptions = mailOptions.confirmOptions;
         const options = (_multiLang && mailOptions.multiLangConfirm) ? mailOptions.multiLangConfirm[lang].others || {} : mailOptions.confirmOptions.others || {};
@@ -271,7 +271,7 @@ var SmtpMailAdapter = mailOptions => {
         
         const user = data.user.attributes;
         const lang = (user[_multiLangColumn] === undefined) ? mailOptions.defaultLang : user[_multiLangColumn]
-        const link = data.link;
+        const link = `${data.link}&locale=${lang}`;
         const appName = data.appName;
         const defOptions = mailOptions.passwordOptions;
         const options = (_multiLang && mailOptions.multiLangPass) ? mailOptions.multiLangPass[lang].others || {} : mailOptions.passwordOptions.others || {};
